@@ -578,6 +578,11 @@
     return YES;
 }
 
+- (BOOL)willPreviewAsset:(id)asset {
+    NSLog(@"preview:%@",asset);
+    return YES;
+}
+
 #pragma mark - Click Event
 
 - (void)deleteBtnClik:(UIButton *)sender {

@@ -216,6 +216,9 @@
 // Decide asset show or not't
 // 决定照片显示与否
 - (BOOL)isAssetCanSelect:(id)asset;
+
+- (BOOL)willPreviewAsset:(id)asset;
+
 @end
 
 

@@ -394,6 +394,10 @@
     NSInteger currentIndex = offSetWidth / (self.view.tz_width + 20);
     
     if (currentIndex < _models.count && _currentIndex != currentIndex) {
+        TZImagePickerController *_tzImagePickerVc = (TZImagePickerController *)self.navigationController;
+        if ([_tzImagePickerVc.pickerDelegate respondsToSelector:@selector(willPreviewAsset:)]) {
+            [_tzImagePickerVc.pickerDelegate willPreviewAsset:((TZAssetModel *)_models[currentIndex]).asset];
+        }
         _currentIndex = currentIndex;
         [self refreshNaviBarAndBottomBarState];
     }

@@ -512,6 +512,9 @@ static CGFloat itemMargin = 5;
         } else {
             TZVideoPlayerController *videoPlayerVc = [[TZVideoPlayerController alloc] init];
             videoPlayerVc.model = model;
+            if ([tzImagePickerVc.pickerDelegate respondsToSelector:@selector(willPreviewAsset:)]) {
+                [tzImagePickerVc.pickerDelegate willPreviewAsset:model.asset];
+            }
             [self.navigationController pushViewController:videoPlayerVc animated:YES];
         }
     } else if (model.type == TZAssetModelMediaTypePhotoGif && tzImagePickerVc.allowPickingGif && !tzImagePickerVc.allowPickingMultipleVideo) {
@@ -521,12 +524,18 @@ static CGFloat itemMargin = 5;
         } else {
             TZGifPhotoPreviewController *gifPreviewVc = [[TZGifPhotoPreviewController alloc] init];
             gifPreviewVc.model = model;
+            if ([tzImagePickerVc.pickerDelegate respondsToSelector:@selector(willPreviewAsset:)]) {
+                [tzImagePickerVc.pickerDelegate willPreviewAsset:model.asset];
+            }
             [self.navigationController pushViewController:gifPreviewVc animated:YES];
         }
     } else {
         TZPhotoPreviewController *photoPreviewVc = [[TZPhotoPreviewController alloc] init];
         photoPreviewVc.currentIndex = index;
         photoPreviewVc.models = _models;
+        if ([tzImagePickerVc.pickerDelegate respondsToSelector:@selector(willPreviewAsset:)]) {
+            [tzImagePickerVc.pickerDelegate willPreviewAsset:model.asset];
+        }
         [self pushPhotoPrevireViewController:photoPreviewVc];
     }
 }
